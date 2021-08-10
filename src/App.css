@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+#helpCards img{
+  height: 100%;
+  width: 100%;
+}
+
+#footer {
+  background-color: rgb(248,249,250);
+  margin-top: 10rem;
+}
+
