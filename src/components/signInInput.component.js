@@ -37,7 +37,10 @@ const SignInInput = () => {
 
         fetch("http://localhost:5000/users/login", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                localStorage.setItem('jwt', result);
+                console.log(window.localStorage.getItem('jwt'));
+            })
             .catch(error => console.log('error', error));
     } 
 

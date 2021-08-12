@@ -7,6 +7,7 @@ import AppNavbar from "./components/navbar.component";
 import Footer from "./components/footer.component";
 import Home from "./components/home.components"
 import Help from "./components/help.component";
+import Character from './components/character.component';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Home />
       </Route>
       <Route path="/characters">
-        <p>characters</p>
+        <Character />
       </Route>
       <Route path="/dungeon">
         <p>dungeon</p>

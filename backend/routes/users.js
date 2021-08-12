@@ -18,7 +18,7 @@ router.get('/', verifyToken, (req, res)=>{
     })
 });
 
-// POST Loggin
+// POST Login
 router.post('/login', (req, res)=> {
     if(req.body.email && req.body.password){
         User.authenticate(req.body.email, req.body.password, function(error, user){
@@ -28,7 +28,9 @@ router.post('/login', (req, res)=> {
                 return err;
             } else {
                 jwt.sign({user}, "Vorpal Blade", { expiresIn : "2 days"}, (err, token)=> {
-                    return res.status(200).json({token})
+                    return res.status(200)
+                        .cookie('token', token, {httpOnly: true})
+                        .json({token})
                 })
             }
         })
