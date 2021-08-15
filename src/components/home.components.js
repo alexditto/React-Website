@@ -14,7 +14,7 @@ import {
 
 import jumboImg from '../imgs/background.png'
 
-const Home = () => {
+const Home = ({setUser}) => {
     const [register, setRegister ] = useState(false)
     const [signIn, setSignIn ] = useState(false)
 
@@ -66,7 +66,7 @@ const Home = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <RegisterInput />
+                            <RegisterInput setUser={setUser} />
                         </Row>
                     </Jumbotron>
                 </Container>
@@ -90,7 +90,7 @@ const Home = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <SignInInput />
+                            <SignInInput setUser={setUser}/>
                         </Row>
                     </Jumbotron>
                 </Container>

@@ -10,7 +10,7 @@ import {
     Button
 } from 'reactstrap';
 
-const SignInInput = () => {
+const SignInInput = ({setUser}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
@@ -38,8 +38,11 @@ const SignInInput = () => {
         fetch("http://localhost:5000/users/login", requestOptions)
             .then(response => response.text())
             .then(result => {
-                localStorage.setItem('jwt', result);
-                console.log(window.localStorage.getItem('jwt'));
+                let parsed = JSON.parse(result)
+                localStorage.setItem('jwt', `bearer ${parsed.token}`);
+                localStorage.setItem('username', parsed.username)
+                setUser(parsed.username)
+                window.location.replace('/characters')
             })
             .catch(error => console.log('error', error));
     } 

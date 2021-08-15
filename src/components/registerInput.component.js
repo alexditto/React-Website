@@ -10,7 +10,7 @@ import {
     Button
 } from 'reactstrap';
 
-const RegisterInput = () => {
+const RegisterInput = ({user}) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -38,8 +38,12 @@ const RegisterInput = () => {
         }
         fetch("http://localhost:5000/users/register", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result);
+                window.location.replace('/characters')
+            })
             .catch(error => console.log('error', error));
+        user=username
     } 
 
     return (

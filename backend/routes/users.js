@@ -30,7 +30,7 @@ router.post('/login', (req, res)=> {
                 jwt.sign({user}, "Vorpal Blade", { expiresIn : "2 days"}, (err, token)=> {
                     return res.status(200)
                         .cookie('token', token, {httpOnly: true})
-                        .json({token})
+                        .json({'username': user.username, 'token': token})
                 })
             }
         })
@@ -51,7 +51,7 @@ router.get('/:id', (req, res)=> {
 // POST New User
 router.post('/register', (req, res)=>{
     const newUser = new User({
-        username: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
     });

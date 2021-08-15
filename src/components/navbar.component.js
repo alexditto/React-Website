@@ -1,6 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+
+import LogInLogOutButton from './logInLogOutButton.component';
 
 import {
     Collapse,
@@ -20,10 +22,14 @@ import {
     Col
   } from 'reactstrap';
 
-const AppNavbar = () => {
+const AppNavbar = ({user, setUser}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
+    useEffect(()=>{
+        document.title = `${user} is in the Dungeon!`
+    })
 
     return (
         <Navbar id="navbar" color="light" light expand="md">
@@ -67,8 +73,15 @@ const AppNavbar = () => {
                                 </Nav>
                             </Collapse>
                         </Col>
-                        <Col lg="auto">
-                            <NavbarText className="float-right">Player's user name</NavbarText>
+                        <Col className="float-right" lg="2">
+                            <Row>
+                                <Col>
+                                <NavbarText className="float-right">{user}</NavbarText>
+                                </Col>
+                                <Col>
+                                    <LogInLogOutButton user={user} setUser={setUser} />
+                                </Col>
+                            </Row>
                         </Col>                    
                     </Row>
                 </Container>

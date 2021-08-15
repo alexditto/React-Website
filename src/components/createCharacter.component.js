@@ -36,7 +36,7 @@ const CreateCharacter = () => {
     return (
         <Container id="newCharacters">
             <Row>
-                <h2>Choose Your Character</h2>
+                <h2>Create Your Character</h2>
                 <Col>
                     <input type="text" placeholder="Character Name" value={characterName} onChange={e=> setCharacterName(e.target.value)}></input>
                 </Col>
