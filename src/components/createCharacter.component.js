@@ -17,13 +17,33 @@ import {
     Button
 } from 'reactstrap';
 
-const CreateCharacter = () => {
-    const [character, setCharacter] = useState("");
-    const [characterName, setCharacterName] = useState("")
+const CreateCharacter = ({character, setCharacter, characterName, setCharacterName}) => {
     
     const createCharacter = () => {
         if(character && characterName){
-            console.log("Clicked")
+            let myHeaders = new Headers();
+            let jwt = window.localStorage.getItem('jwt')
+            myHeaders.append("Authorization", jwt)
+            myHeaders.append("Content-Type", "application/json");
+            
+            let data = JSON.stringify({
+                "character" : characterName,
+                "type" : character
+            });
+
+            let requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: data,
+            }
+            
+            fetch("http://localhost:5000/characters", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+            
+            setCharacter("")
+            setCharacterName("")
         } else if (character) {
             return alert("Please NAME your hero.")
         } else if (characterName){

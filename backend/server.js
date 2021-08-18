@@ -24,7 +24,7 @@ const userRouter = require('./routes/users');
 const characterRouter = require('./routes/characters');
 
 app.use('/users', userRouter);
-app.use('/character', characterRouter);
+app.use('/characters', characterRouter);
 
 
 app.listen(port, ()=> console.log(`Server started on port ${port}. Welcome Dungeon Master.`));

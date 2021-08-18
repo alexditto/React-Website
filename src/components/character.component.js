@@ -1,5 +1,7 @@
 import React from 'react'
+import { useState } from 'react';
 
+import CharacterList from './characterList.component';
 import CreateCharacter from './createCharacter.component';
 
 import {
@@ -7,10 +9,19 @@ import {
 } from 'reactstrap';
 
 const Character = () => {
+
+    const [character, setCharacter] = useState("");
+    const [characterName, setCharacterName] = useState("")
+
     return (
         <Container>
-            <CreateCharacter />
-            Hello from the character component
+            <CharacterList characterName={characterName} />
+            <CreateCharacter 
+                character={character} 
+                setCharacter={setCharacter} 
+                characterName={characterName}
+                setCharacterName={setCharacterName}
+                />
         </Container>
     )
 }

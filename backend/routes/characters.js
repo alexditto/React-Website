@@ -51,16 +51,13 @@ router.get('/:id', verifyToken, (req, res)=> {
 router.post('/', verifyToken, (req, res)=> {
     jwt.verify(req.token, "Vorpal Blade", (err, authData) => {
         if(err) {
+            console.log(err)
             res.sendStatus(403)
         } else {
+            console.log(req.body)
             const newCharacter = new Character({
-                name: req.body.name,
-                str: req.body.str,
-                dex: req.body.dex,
-                con: req.body.con,
-                wis: req.body.wis,
-                int: req.body.int,
-                cha: req.body.cha, 
+                character: req.body.character,
+                type: req.body.type,
                 user: authData.user._id
             });
             newCharacter.save().then(character=>res.json(character))
