@@ -28,6 +28,10 @@ const Hero = ({hero, deleteCharacter}) => {
         hero.type === "Cleric Female" ? clericFemale
         : ""
 
+    const playGame = (id) => {
+        localStorage.setItem('character', id)
+        window.location.replace('/dungeon')
+    }
     return (
         <Container id={hero._id} className={className}>
             <h3>
@@ -49,7 +53,7 @@ const Hero = ({hero, deleteCharacter}) => {
             </Row>
             <Row>
                 <Col>
-                    <Button>Play</Button>
+                    <Button onClick={e=> playGame(hero._id)}>Play</Button>
                 </Col>
                 <Col>
                     <Button  onClick={e=> deleteCharacter(hero._id)}>Delete</Button>

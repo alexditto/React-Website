@@ -8,6 +8,7 @@ import Footer from "./components/footer.component";
 import Home from "./components/home.components"
 import Help from "./components/help.component";
 import Character from './components/character.component';
+import Dungeon from './components/dungeon.component';
 
 function App() {
   const [user, setUser] = useState("")
@@ -28,7 +29,7 @@ function App() {
         <Character />
       </Route>
       <Route path="/dungeon">
-        <p>dungeon</p>
+        <Dungeon />
       </Route>
       <Route path="/help">
         <Help />

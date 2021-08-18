@@ -10,7 +10,7 @@ import {
     Button
 } from 'reactstrap';
 
-const RegisterInput = ({user}) => {
+const RegisterInput = ({setUser}) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -43,7 +43,7 @@ const RegisterInput = ({user}) => {
                 window.location.replace('/characters')
             })
             .catch(error => console.log('error', error));
-        user=username
+            setUser(username)
     } 
 
     return (

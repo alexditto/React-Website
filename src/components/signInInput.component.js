@@ -27,7 +27,7 @@ const SignInInput = ({setUser}) => {
         let data = JSON.stringify({
             "email" : email,
             "password" : password
-        });
+        }); 
 
         let requestOptions = {
             method : 'POST',

@@ -29,7 +29,7 @@ const AppNavbar = ({user, setUser}) => {
 
     useEffect(()=>{
         document.title = `${user} is in the Dungeon!`
-    })
+    }, [user])
 
     return (
         <Navbar id="navbar" color="light" light expand="md">
@@ -45,9 +45,7 @@ const AppNavbar = ({user, setUser}) => {
                                     <NavItem>
                                         <Link to="/characters"><NavLink>Characters</NavLink></Link>
                                     </NavItem>
-                                    <NavItem>
-                                        <Link to="/dungeon"><NavLink>Dungeon</NavLink></Link>
-                                    </NavItem>
+                                    
                                     <NavItem>
                                         <Link to="/help"><NavLink>Help</NavLink></Link>
                                     </NavItem>
