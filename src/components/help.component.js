@@ -31,7 +31,7 @@ const Help = () => {
     return (
         <Container className="mt-4">
             <Nav tabs>
-                <NavItem>
+                <NavItem >
                     <NavLink
                         className={classnames({ active: activeTab === '1' })}
                         onClick={() => { toggle('1'); }}
@@ -87,7 +87,7 @@ const Help = () => {
                                         I started as a self-taught coder utilizing <a href="https://teamtreehouse.com/" target="_blank" rel="noreferrer">Treehouse</a> platform. 
                                         I then tested into the <a href="https://www.launchcode.org/" target="_blank" rel="noreferrer">LaunchCode</a> internship program. 
                                         I have been working since 2020 as a Jr Developer. Currenlty, I generally work with the MERN or MEAN stack, though I have written some programs in Python.
-                                        I also am fluent in SuiteScript, the JavaScript like language that is utilized on the <a href="https://www.netsuite.com/portal/home.shtml" target="_blank" rel="noreferrer">NetSuite</a> SAAS.</CardText>
+                                        I also am fluent in SuiteScript, the JavaScript-like language that is utilized on the <a href="https://www.netsuite.com/portal/home.shtml" target="_blank" rel="noreferrer">NetSuite</a> SAAS.</CardText>
                                     <Button href="/resume">See My Stylish Resume</Button>
                                 </Card>
                             </Col>

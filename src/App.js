@@ -5,10 +5,13 @@ import { useState } from 'react';
 
 import AppNavbar from "./components/navbar.component";
 import Footer from "./components/footer.component";
-import Home from "./components/home.components"
+import Home from "./components/home.components";
 import Help from "./components/help.component";
 import Character from './components/character.component';
 import Dungeon from './components/dungeon.component';
+import Redirected from './components/redirected.component';
+import Resume from './components/resume.components';
+import Pitch from './components/pitch.component';
 
 function App() {
   const [user, setUser] = useState("")
@@ -18,6 +21,12 @@ function App() {
     let savedUser =window.localStorage.getItem('username')
     setUser(savedUser)
   }
+  
+  if(new Date()>Date.parse(window.localStorage.getItem("timeout"))){
+    console.log("Time out")
+    window.localStorage.clear()
+    setUser("")
+  }
 
   return (
     <Router>
@@ -26,7 +35,7 @@ function App() {
         <Home setUser={setUser}/>
       </Route>
       <Route path="/characters">
-        <Character />
+        {!user ? <Redirected setUser={setUser} /> : <Character />}
       </Route>
       <Route path="/dungeon">
         <Dungeon />
@@ -34,9 +43,14 @@ function App() {
       <Route path="/help">
         <Help />
       </Route>
+      <Route path='/resume'>
+        <Resume />
+      </Route>
+      <Route path='/'>
+        {!user ? <Redirected setUser={setUser} /> : <Pitch user={user} />}
+      </Route>
       <Footer />
     </Router>
-    
   );
 }
 

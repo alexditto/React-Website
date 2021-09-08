@@ -8,16 +8,18 @@ import fighterFemale from '../imgs/fighter-female.png';
 import wizardFemale from '../imgs/wizard-female.jpg';
 import rogueFemale from '../imgs/rogue-female.jpg';
 import clericFemale from '../imgs/cleric-female.png';
+import doorIcon from "../imgs/door.png";
+import resurrectionIcon from '../imgs/resurrection.png';
+import deleteIcon from '../imgs/delete.png';
 
 import {
     Row,
     Col,
-    Container,
-    Button
+    Container
 } from 'reactstrap';
 
-const Hero = ({hero, deleteCharacter}) => {
-    let className = hero.alive ? "hero" : "dead"
+const Hero = ({hero, reviveCharacter, deleteCharacter}) => {
+    let className = hero.alive ? "alive" : "dead"
     let imageSRC = hero.type === "Fighter Male" ? fighterMale :
         hero.type === "Wizard Male" ? wizardMale :
         hero.type === "Rogue Male" ? rogueMale :
@@ -32,35 +34,89 @@ const Hero = ({hero, deleteCharacter}) => {
         localStorage.setItem('character', id)
         window.location.replace('/dungeon')
     }
-    return (
-        <Container id={hero._id} className={className}>
-            <h3>
-                {hero.character}
-            </h3>
-            <Row>
-                <Col>
-                    <img src = {imageSRC} class="img-thumbnail" alt= {hero.type} />
-                </Col>
-                <Col>
-                    Hero HP: {hero.hp}
-                </Col>
-                <Col>
-                    Hero Gold: {hero.gold}
-                </Col>
-                <Col>
-                    Hero XP: {hero.xp}
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Button onClick={e=> playGame(hero._id)}>Play</Button>
-                </Col>
-                <Col>
-                    <Button  onClick={e=> deleteCharacter(hero._id)}>Delete</Button>
-                </Col>
-            </Row>
-        </Container>
-    )
+    
+    if(hero.alive){
+        return (
+            <Container id={hero._id} className={className}>
+                <h3>
+                    {hero.character}
+                </h3>
+                <Row>
+                    <Col>
+                        <img src = {imageSRC} class="heroImg img-thumbnail" alt= {hero.type} />
+                    </Col>
+                    <Col>
+                        <Row>
+                            <Col>
+                                Hero Level: {hero.level}
+                            </Col>
+                            <Col>
+                                Hero HP: {hero.hp}
+                            </Col>
+                            <Col>
+                                Hero Gold: {hero.gold}
+                            </Col>
+                            <Col>
+                                Hero XP: {hero.xp}
+                            </Col>
+                        </Row>
+                        <Row id="characterIcons">
+                            <Col>
+                                <img src={doorIcon} alt="Enter the Dungeon" className="icon" onClick={e=> playGame(hero._id)} />
+                            </Col>
+                            <Col>
+                                <img src={deleteIcon} alt={`Delete ${hero.character}`} className="icon" onClick={e=> deleteCharacter(hero._id)} />
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    } else {
+        return (
+            <Container id={hero._id} className={className}>
+                <h3>
+                    {hero.character}
+                </h3>
+                <Row>
+                    <Col>
+                        <img src = {imageSRC} class="heroImg img-thumbnail" alt= {hero.type} />
+                    </Col>
+                    <Col>
+                        <Row>
+                            <Col>
+                                Hero Level: {hero.level}
+                            </Col>
+                            <Col>
+                                Hero HP: {hero.hp}
+                            </Col>
+                            <Col>
+                                Hero Gold: {hero.gold}
+                            </Col>
+                            <Col>
+                                Hero XP: {hero.xp}
+                            </Col>
+                        </Row>
+                        <Row id="characterIcons">
+                            <Col>
+                                <img src={doorIcon} alt="Enter the Dungeon" className="icon" onClick={e=> playGame(hero._id)} />
+                            </Col>
+                            <Col id="reviveIcon" className="align-me">
+                                <img src={resurrectionIcon} alt="Resurrect Character" className="icon" onClick={e=> reviveCharacter(hero._id, hero)} />
+                                <br className="text" />
+                                <p className="text">
+                                    Revive Character? It will reduce your character 2 levels.
+                                </p>
+                            </Col>
+                            <Col>
+                                <img src={deleteIcon} alt={`Delete ${hero.character}`} className="icon" onClick={e=> deleteCharacter(hero._id)} />
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 export default Hero

@@ -5,7 +5,8 @@ import CharacterList from './characterList.component';
 import CreateCharacter from './createCharacter.component';
 
 import {
-    Container
+    Container,
+    Col
 } from 'reactstrap';
 
 const Character = () => {
@@ -15,13 +16,19 @@ const Character = () => {
 
     return (
         <Container>
-            <CharacterList characterName={characterName} />
-            <CreateCharacter 
-                character={character} 
-                setCharacter={setCharacter} 
-                characterName={characterName}
-                setCharacterName={setCharacterName}
-                />
+            <Col>
+                <CharacterList characterName={characterName} />
+            </Col>
+            <Col>
+                <CreateCharacter 
+                    character={character} 
+                    setCharacter={setCharacter} 
+                    characterName={characterName}
+                    setCharacterName={setCharacterName}
+                    />
+            </Col>
+                <br />
+                <br />
         </Container>
     )
 }

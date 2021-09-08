@@ -42,6 +42,9 @@ const SignInInput = ({setUser}) => {
                 localStorage.setItem('jwt', `bearer ${parsed.token}`);
                 localStorage.setItem('username', parsed.username)
                 setUser(parsed.username)
+                let time = new Date()
+                time.setDate(time.getDate()+2)
+                localStorage.setItem("timeout", time)
                 window.location.replace('/characters')
             })
             .catch(error => console.log('error', error));

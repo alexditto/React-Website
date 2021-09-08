@@ -33,6 +33,42 @@ const CharacterList = ({characterName}) => {
             .catch(error => console.log('error', error));
     }
 
+    const reviveCharacter = (id, hero) => {
+        console.log(`Character ${hero.character}`)
+        let newLevel = hero.level >= 3 ? hero.level - 2 : 1;
+        let myHeaders = new Headers();
+        let jwt = window.localStorage.getItem('jwt')
+        myHeaders.append("Authorization", jwt);
+        myHeaders.append("Content-Type", "application/json");
+
+        let data = {
+            character: hero.character,
+            hp : 10 + (newLevel * 5),
+            type: hero.type,
+            attack: hero.attack,
+            armor: hero.armor,
+            level : newLevel,
+            xp: 3**newLevel,
+            gold: hero.gold,
+            alive : true,
+            victory : false
+        }
+
+        let requestOptions = {
+            method: 'PATCH',
+            headers: myHeaders,
+            body : JSON.stringify(data),
+            redirect: 'follow'
+          };
+
+          fetch(`http://localhost:5000/characters/${id}`, requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+        
+        window.location.replace("/characters")
+    }
+
     const deleteCharacter = (id) => {
         var myHeaders = new Headers();
         let jwt = window.localStorage.getItem('jwt')
@@ -61,7 +97,7 @@ const CharacterList = ({characterName}) => {
             </Row>
             <Row>
                 <Col>
-                    {characters.map(character => <Hero hero={character} deleteCharacter={deleteCharacter}/>)}
+                    {characters.map(character => <Hero hero={character} reviveCharacter={reviveCharacter} deleteCharacter={deleteCharacter}/>)}
                 </Col>
             </Row>
         </Container>

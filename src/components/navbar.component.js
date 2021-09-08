@@ -18,7 +18,6 @@ import {
     DropdownItem,
     NavbarText,
     Container,
-    Row,
     Col
   } from 'reactstrap';
 
@@ -28,13 +27,12 @@ const AppNavbar = ({user, setUser}) => {
     const toggle = () => setIsOpen(!isOpen);
 
     useEffect(()=>{
-        document.title = `${user} is in the Dungeon!`
+        !user ? document.title = `Dungeon Crawl!` : document.title = `${user} is in the Dungeon!`
     }, [user])
 
     return (
         <Navbar id="navbar" color="light" light expand="md">
-                <Container>
-                    <Row>
+                <Container className="container-fluid no-padding">
                         <Col lg="2">
                             <Link to ='/home'><NavbarBrand>Dungeon Brawl</NavbarBrand></Link>
                         </Col>
@@ -71,17 +69,10 @@ const AppNavbar = ({user, setUser}) => {
                                 </Nav>
                             </Collapse>
                         </Col>
-                        <Col className="float-right" lg="2">
-                            <Row>
-                                <Col>
-                                <NavbarText className="float-right">{user}</NavbarText>
-                                </Col>
-                                <Col>
-                                    <LogInLogOutButton user={user} setUser={setUser} />
-                                </Col>
-                            </Row>
-                        </Col>                    
-                    </Row>
+                        <Col className="float-right col-auto" lg="2">
+                            <NavbarText className="m-2">{user}</NavbarText>
+                            <LogInLogOutButton user={user} setUser={setUser} />
+                        </Col>
                 </Container>
             </Navbar>
     )

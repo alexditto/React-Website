@@ -31,11 +31,22 @@ const Home = ({setUser}) => {
     if(!register && !signIn){
         return (
             <div>
-                <Container style={{height: 500, width: 1000, backgroundImage: `url(${jumboImg})`, backgroundSize: 'cover'}} >
-                    <Jumbotron>
+                <Container style={{height: 500, width: 1000, backgroundImage: `url(${jumboImg})`, backgroundSize: 'cover', color: "#19191a"}} >
+                    
+                        <br />
                         <Row>
-                            <h1> Home</h1>
+                            <h1> Are you ready to descend into the dungeon?</h1>
                         </Row>
+                        <br />
+                        <br />
+                        <h3>The dungeon awaits ready for Heros seeking to prove themselves. </h3>
+                        <h3>Create your account. Craft your hero. Traverse the dungeon. </h3>
+                        <h3>   
+                            Listen close. Can you hear it?
+                            There awaits at the bottom of this dungeon a great monster. Will you be able to slay it?
+                        </h3>
+                        <br />
+                        <br />
                         <Row>
                             <Col>
                                 <SignIn name="Sign In" onClickSignIn= {onClickSignIn}/>
@@ -44,7 +55,7 @@ const Home = ({setUser}) => {
                                 <Register name="Register" onClickRegister = {onClickRegister} />
                             </Col>
                         </Row>
-                    </Jumbotron>
+                   
                 </Container>
                 <Row className="mb-5"></Row>
                 <Row className="mb-5"></Row>

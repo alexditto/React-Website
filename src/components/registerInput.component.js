@@ -40,6 +40,13 @@ const RegisterInput = ({setUser}) => {
             .then(response => response.text())
             .then(result => {
                 console.log(result);
+                let parsed = JSON.parse(result)
+                localStorage.setItem('jwt', `bearer ${parsed.token}`);
+                localStorage.setItem('username', username)
+                let time = new Date()
+                time.setDate(time.getDate()+2)
+                localStorage.setItem("timeout", time)
+                setUser(username)
                 window.location.replace('/characters')
             })
             .catch(error => console.log('error', error));

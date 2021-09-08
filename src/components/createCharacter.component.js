@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 
 import fighterMale from '../imgs/fighter-male.jpg';
 import wizardMale from '../imgs/wizard-male.jpg';
@@ -44,6 +43,7 @@ const CreateCharacter = ({character, setCharacter, characterName, setCharacterNa
             
             setCharacter("")
             setCharacterName("")
+            // window.location.replace("/characters")
         } else if (character) {
             return alert("Please NAME your hero.")
         } else if (characterName){

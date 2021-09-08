@@ -13,6 +13,7 @@ const CharacterSchema = new Schema({
     gold : { type: Number, default: 0 },
     inventory : { type: Array, default: [] },
     alive : { type: Boolean, default: true },
+    victory : {type: Boolean, default : false},
     user : { type: String, require: true }
 });
 
