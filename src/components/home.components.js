@@ -20,12 +20,10 @@ const Home = ({setUser}) => {
 
     const onClickRegister = () => {
         setRegister(!register)
-        console.log(`Register is ${register}`)
     }
     
     const onClickSignIn = () => {
         setSignIn(!signIn)
-        console.log(`Sign in is ${signIn}`)
     }
 
     if(!register && !signIn){

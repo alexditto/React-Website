@@ -9,7 +9,6 @@ const LogInLogOutButton = ({user, setUser}) => {
     const logOut = () => {
         localStorage.clear();
         setUser("");
-        console.log(user);
         window.location.replace('/home');
     }
 

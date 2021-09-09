@@ -96,7 +96,7 @@ const Dungeon = () => {
             redirect: 'follow'
           };
           
-          fetch(`http://localhost:5000/characters/${characterId}`, requestOptions)
+          fetch(`http://localhost:5000/api/characters/${characterId}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 let res = JSON.parse(result);
@@ -175,7 +175,7 @@ const Dungeon = () => {
             redirect: 'follow'
           };
 
-          fetch(`http://localhost:5000/characters/${characterId}`, requestOptions)
+          fetch(`http://localhost:5000/api/characters/${characterId}`, requestOptions)
           .then(response => response.text())
           .then(result => console.log(result))
           .catch(error => console.log('error', error));

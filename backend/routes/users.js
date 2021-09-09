@@ -21,8 +21,10 @@ router.get('/', verifyToken, (req, res)=>{
 // POST Login
 router.post('/login', (req, res)=> {
     if(req.body.email && req.body.password){
+        console.log(req.body)
         User.authenticate(req.body.email, req.body.password, function(error, user){
             if( error || !user ){
+                console.log(error)
                 let err = new Error("Invaild login")
                 err.status = 401;
                 return err;
@@ -50,17 +52,23 @@ router.get('/:id', (req, res)=> {
 
 // POST New User
 router.post('/register', (req, res)=>{
-    const newUser = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    });
-
-    newUser.save()
-        .then(user => jwt.sign({user}, "Vorpal Blade", { expiresIn : "2 days"}, (err, token)=>{
-            res.json({token})
-        }))
-        .catch(err => res.json(err))
+    User.findOne({email : req.body.email}, function (err, user){
+        if(user === null){
+            const newUser = new User({
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+            });
+        
+            newUser.save()
+                .then(user => jwt.sign({user}, "Vorpal Blade", { expiresIn : "2 days"}, (err, token)=>{
+                    res.json({token})
+                }))
+                .catch(err => res.json(err))
+        } else {
+            return res.json({error : "Email Taken"})
+        }
+    })
 })
 
 // DELETE Delete User

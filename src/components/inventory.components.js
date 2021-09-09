@@ -75,7 +75,6 @@ const Inventory = ({type, inventory, setInventory, level, gold, setGold, potions
                 setGold(gold-cost)
             } else {
                 alert("You do not have enough gold.")
-                console.log(gold)
             }
         }
     }

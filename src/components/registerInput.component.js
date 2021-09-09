@@ -21,7 +21,9 @@ const RegisterInput = ({setUser}) => {
         if(password !== confirm){
             return alert("Sorry, your passwords didn't match.")
         }
-        console.log(`Submitting ${username}, ${email}, ${password}`);
+        if(username.length < 3){
+            return alert("Sorry, your username must be three characters or longer.")
+        }
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -36,18 +38,21 @@ const RegisterInput = ({setUser}) => {
             headers : myHeaders,
             body : data
         }
-        fetch("http://localhost:5000/users/register", requestOptions)
+        fetch("http://localhost:5000/api/users/register", requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
                 let parsed = JSON.parse(result)
-                localStorage.setItem('jwt', `bearer ${parsed.token}`);
-                localStorage.setItem('username', username)
-                let time = new Date()
-                time.setDate(time.getDate()+2)
-                localStorage.setItem("timeout", time)
-                setUser(username)
-                window.location.replace('/characters')
+                if(!parsed.error){
+                    localStorage.setItem('jwt', `bearer ${parsed.token}`);
+                    localStorage.setItem('username', username)
+                    let time = new Date()
+                    time.setDate(time.getDate()+2)
+                    localStorage.setItem("timeout", time)
+                    setUser(username)
+                    window.location.replace('/characters')
+                } else {
+                    alert("Sorry, that email has already been used.")
+                }
             })
             .catch(error => console.log('error', error));
             setUser(username)

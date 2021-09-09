@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Pitch = ({user}) => {
-    console.log(window.location.href.split("/").reverse()[0])
     if(window.location.href.split("/").reverse()[0] !=="resume"){
         return (
             <div className="container">

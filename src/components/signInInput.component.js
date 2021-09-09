@@ -19,7 +19,6 @@ const SignInInput = ({setUser}) => {
         if(!password){
             return alert("Hey, you need your password.")
         }
-        console.log(`Submitting ${email}, ${password}`);
 
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -35,7 +34,7 @@ const SignInInput = ({setUser}) => {
             body : data
         }
 
-        fetch("http://localhost:5000/users/login", requestOptions)
+        fetch("http://localhost:5000/api/users/login", requestOptions)
             .then(response => response.text())
             .then(result => {
                 let parsed = JSON.parse(result)

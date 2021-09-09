@@ -27,7 +27,7 @@ const CharacterList = ({characterName}) => {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:5000/characters/all", requestOptions)
+        fetch("http://localhost:5000/api/characters/all", requestOptions)
             .then(response => response.text())
             .then(result => setCharacters(JSON.parse(result)))
             .catch(error => console.log('error', error));
@@ -61,7 +61,7 @@ const CharacterList = ({characterName}) => {
             redirect: 'follow'
           };
 
-          fetch(`http://localhost:5000/characters/${id}`, requestOptions)
+          fetch(`http://localhost:5000/api/characters/${id}`, requestOptions)
           .then(response => response.text())
           .then(result => console.log(result))
           .catch(error => console.log('error', error));
@@ -82,7 +82,7 @@ const CharacterList = ({characterName}) => {
             redirect: 'follow'
           };
           
-          fetch(`http://localhost:5000/characters/${id}`, requestOptions)
+          fetch(`http://localhost:/api/characters/${id}`, requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
