@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 import {
     Container,
@@ -26,6 +27,13 @@ const Help = () => {
 
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);
+    }
+
+    const history = useHistory();
+
+    const resumePage = () => {
+        let path = '/resume'
+        history.push(path)
     }
 
     return (
@@ -88,7 +96,7 @@ const Help = () => {
                                         I then tested into the <a href="https://www.launchcode.org/" target="_blank" rel="noreferrer">LaunchCode</a> internship program. 
                                         I have been working since 2020 as a Jr Developer. Currenlty, I generally work with the MERN or MEAN stack, though I have written some programs in Python.
                                         I also am fluent in SuiteScript, the JavaScript-like language that is utilized on the <a href="https://www.netsuite.com/portal/home.shtml" target="_blank" rel="noreferrer">NetSuite</a> SAAS.</CardText>
-                                    <Button href="/resume">See My Stylish Resume</Button>
+                                    <Button onClick={e=>resumePage()}>See My Stylish Resume</Button>
                                 </Card>
                             </Col>
                         </Row>

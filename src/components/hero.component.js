@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 
 import fighterMale from '../imgs/fighter-male.jpg';
 import wizardMale from '../imgs/wizard-male.jpg';
@@ -19,6 +20,7 @@ import {
 } from 'reactstrap';
 
 const Hero = ({hero, reviveCharacter, deleteCharacter}) => {
+    const history = useHistory();
     let className = hero.alive ? "alive" : "dead"
     let imageSRC = hero.type === "Fighter Male" ? fighterMale :
         hero.type === "Wizard Male" ? wizardMale :
@@ -32,7 +34,9 @@ const Hero = ({hero, reviveCharacter, deleteCharacter}) => {
 
     const playGame = (id) => {
         localStorage.setItem('character', id)
-        window.location.replace('/dungeon')
+        let path = "/dungeon";
+        history.push(path)
+        // window.location.replace('/dungeon')
     }
     
     if(hero.alive){

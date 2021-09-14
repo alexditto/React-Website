@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { 
     Row,
@@ -11,6 +12,8 @@ import {
 } from 'reactstrap';
 
 const SignInInput = ({setUser}) => {
+    const history = useHistory(); 
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
@@ -34,7 +37,7 @@ const SignInInput = ({setUser}) => {
             body : data
         }
 
-        fetch("http://localhost:5000/api/users/login", requestOptions)
+        fetch("/api/users/login", requestOptions)
             .then(response => response.text())
             .then(result => {
                 let parsed = JSON.parse(result)
@@ -44,7 +47,9 @@ const SignInInput = ({setUser}) => {
                 let time = new Date()
                 time.setDate(time.getDate()+2)
                 localStorage.setItem("timeout", time)
-                window.location.replace('/characters')
+                let path = '/characters';
+                history.push(path)
+                // window.location.replace('/characters')
             })
             .catch(error => console.log('error', error));
     } 

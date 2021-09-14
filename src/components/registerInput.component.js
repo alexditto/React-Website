@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { 
     Row,
@@ -11,6 +12,7 @@ import {
 } from 'reactstrap';
 
 const RegisterInput = ({setUser}) => {
+    const history = useHistory();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -38,7 +40,7 @@ const RegisterInput = ({setUser}) => {
             headers : myHeaders,
             body : data
         }
-        fetch("http://localhost:5000/api/users/register", requestOptions)
+        fetch("/api/users/register", requestOptions)
             .then(response => response.text())
             .then(result => {
                 let parsed = JSON.parse(result)
@@ -49,7 +51,9 @@ const RegisterInput = ({setUser}) => {
                     time.setDate(time.getDate()+2)
                     localStorage.setItem("timeout", time)
                     setUser(username)
-                    window.location.replace('/characters')
+                    let path = "/characters"
+                    history.push(path)
+                    // window.location.replace('/characters')
                 } else {
                     alert("Sorry, that email has already been used.")
                 }
@@ -101,6 +105,9 @@ const RegisterInput = ({setUser}) => {
             <Row>
                 <Button>Submit</Button>
             </Row>
+            <br />
+            <br />
+            <br />
         </Form>
     )
 }

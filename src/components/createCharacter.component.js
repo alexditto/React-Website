@@ -36,7 +36,7 @@ const CreateCharacter = ({character, setCharacter, characterName, setCharacterNa
                 body: data,
             }
             
-            fetch("http://localhost:5000/api/characters", requestOptions)
+            fetch("/api/characters", requestOptions)
                 .then(response => response.text())
                 .then(result => console.log(result))
                 .catch(error => console.log('error', error));

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Hero from './hero.component'
 
@@ -10,6 +11,8 @@ import {
 } from 'reactstrap';
 
 const CharacterList = ({characterName}) => {
+    const history = useHistory();
+
     const [characters, setCharacters] = useState([])
 
     useEffect(()=> {
@@ -27,7 +30,7 @@ const CharacterList = ({characterName}) => {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:5000/api/characters/all", requestOptions)
+        fetch("/api/characters/all", requestOptions)
             .then(response => response.text())
             .then(result => setCharacters(JSON.parse(result)))
             .catch(error => console.log('error', error));
@@ -50,6 +53,7 @@ const CharacterList = ({characterName}) => {
             level : newLevel,
             xp: 3**newLevel,
             gold: hero.gold,
+            inventory: hero.inventory,
             alive : true,
             victory : false
         }
@@ -61,12 +65,13 @@ const CharacterList = ({characterName}) => {
             redirect: 'follow'
           };
 
-          fetch(`http://localhost:5000/api/characters/${id}`, requestOptions)
+          fetch(`/api/characters/${id}`, requestOptions)
           .then(response => response.text())
-          .then(result => console.log(result))
+          .then(result => {
+            let path = "/dungeon"
+            history.push(path)
+          })
           .catch(error => console.log('error', error));
-        
-        window.location.replace("/characters")
     }
 
     const deleteCharacter = (id) => {
@@ -82,7 +87,7 @@ const CharacterList = ({characterName}) => {
             redirect: 'follow'
           };
           
-          fetch(`http://localhost:/api/characters/${id}`, requestOptions)
+          fetch(`/api/characters/${id}`, requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));

@@ -29,7 +29,7 @@ const Home = ({setUser}) => {
     if(!register && !signIn){
         return (
             <div>
-                <Container style={{height: 500, width: 1000, backgroundImage: `url(${jumboImg})`, backgroundSize: 'cover', color: "#19191a"}} >
+                <Container style={{height: "100vh", width: "100vw", backgroundImage: `url(${jumboImg})`, backgroundSize: 'cover', color: "#19191a"}} >
                     
                         <br />
                         <Row>

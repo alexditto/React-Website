@@ -10,7 +10,7 @@ import { FaGithub, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div id="footer" className="fixed-bottom">  
+        <div id="footer" className="fixed-bottom"> 
             <Container className="text-right  mt-6" >
                 <Row className="mb-3">
                     <Col lg="4" className="text-center">

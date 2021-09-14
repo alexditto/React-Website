@@ -1,15 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import {
     Button
 } from 'reactstrap'
 
 const LogInLogOutButton = ({user, setUser}) => {
+    const history = useHistory();
+
     const logOut = () => {
         localStorage.clear();
         setUser("");
-        window.location.replace('/home');
+        let path = "/home"
+        history.push(path)
     }
 
     if(user){

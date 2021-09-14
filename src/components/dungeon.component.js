@@ -96,7 +96,7 @@ const Dungeon = () => {
             redirect: 'follow'
           };
           
-          fetch(`http://localhost:5000/api/characters/${characterId}`, requestOptions)
+          fetch(`/api/characters/${characterId}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 let res = JSON.parse(result);
@@ -175,7 +175,7 @@ const Dungeon = () => {
             redirect: 'follow'
           };
 
-          fetch(`http://localhost:5000/api/characters/${characterId}`, requestOptions)
+          fetch(`/api/characters/${characterId}`, requestOptions)
           .then(response => response.text())
           .then(result => console.log(result))
           .catch(error => console.log('error', error));
@@ -443,7 +443,7 @@ const Dungeon = () => {
             <Container>
                 <br />
                 <Row>
-                    <Col id="heroPanel">
+                    <Col id="heroPanel" className="col-4">
                         <div>{monsterHit}</div>
                         <h3>{character}</h3>
                         <img src = {imageSRC} class="img-thumbnail" alt= {type} />
@@ -456,7 +456,7 @@ const Dungeon = () => {
                         <p>Gold: {gold}</p>
                         <p>Potions: {potions}</p>
                     </Col>
-                    <Col id="actionPanel">
+                    <Col id="actionPanel" className="col-4">
                         <Container>
                             <Row className="mb-4">
                                 <Col>
@@ -484,7 +484,7 @@ const Dungeon = () => {
                             </Row>
                         </Container>
                     </Col> 
-                    <Col id="monsterPanel">
+                    <Col id="monsterPanel" className="col-4">
                         <div>{playerHit}</div>
                         <h3>{monsterName}</h3>
                         <img src={monsterImg} alt={monsterName} />
