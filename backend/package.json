@@ -4,7 +4,7 @@
   "description": "A react website to showcase coding experience.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js",
     "server": "nodemon server.js"
   },
@@ -19,5 +19,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3",
     "nodemon": "^2.0.12"
+  },
+  "devDependencies": {
+    "jest": "^27.4.5"
   }
 }

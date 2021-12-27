@@ -345,7 +345,7 @@ const Dungeon = () => {
                 setXp(xp + addedXp)
                 setGold(gold + addedGold)
                 setMonsterAlive(false)
-                setVictoryMessage(`You killed ${monsterName} and received ${addedGold} gold and ${addedXp} experiance because of your x${multiplier} multiplier.`)
+                setVictoryMessage(`You killed ${monsterName} and received ${addedGold} gold and ${addedXp} experience because of your x${multiplier} multiplier.`)
                 levelUp()
             }
         }
