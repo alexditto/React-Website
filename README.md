@@ -1,6 +1,6 @@
 # Dungeon Dive
 
-Thanks for cheyoucking out my code. This website is intended to show my knowledge and ability in the MERN stack. Please feel free to reach out to me. 
+Thanks for checking out my code. This website is intended to show my knowledge and ability in the MERN stack. Please feel free to reach out to me. 
 
 You can find an active version of this code at codingdittoportfolio.com 
 
